@@ -31,14 +31,21 @@ def execute_instructions(instructions: str):
             case '-':
                 cells[data_pointer] -= 1
             case '.':
-                print(chr(cells[data_pointer]))
+                print(chr(cells[data_pointer]), end='')
             case ',':
-                cells[data_pointer] = readchar()
+                cells[data_pointer] = ord(readchar())
             case '[':
                 if cells[data_pointer] == 0:
                     try:
-                        instruction_pointer = instructions.index(']', instruction_pointer)
-                    except ValueError:
+                        remaining_closing_brackets = 1
+                        while remaining_closing_brackets > 0:
+                            instruction_pointer += 1
+                            current_instruction = instructions[instruction_pointer]
+                            if current_instruction == '[':
+                                remaining_closing_brackets += 1
+                            if current_instruction == ']':
+                                remaining_closing_brackets -= 1
+                    except IndexError:
                         print("Unmatched opening bracket")
                         sys.exit(1)
                 else:

@@ -8,8 +8,11 @@ This is an interpreter for the language, allowing you to run brainf*ck programs.
 
 ## Install
 You need: python & pip
+
 `git clone https://github.com/EnemigoPython/bfpy`
+
 (Optional - create virtual environment) `python -m venv .venv`
+
 `pip install -r requirements.txt`
 
 ## Use
